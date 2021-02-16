@@ -3,7 +3,7 @@ language: java
 jdk:
   - oraclejdk8
 env:
-  - COVERAGE=0.2
+  - COVERAGE=0.05
 before_install:
   - ./gradlew clean jar
 install:
