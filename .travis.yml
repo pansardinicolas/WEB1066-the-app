@@ -8,9 +8,15 @@ before_install:
   - ./gradlew clean jar
 install:
   - gradle assemble
+jobs:
+  include:
+    - env: SUT=./monolithic/ui
+    - env: SUT=./monolithic/service/cart
+    - env: SUT=./monolithic/service/user
+    - env: SUT=./monolithic/repository/order
+    - env: SUT=./monolithic/repository/cart
+    - env: SUT=./monolithic/repository/product
+    - env: SUT=./monolithic/repository/user
+    
 script:
-  - ./gradlew test
-  - ./gradlew jacocoTestReport
-  - find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print $3" "$4" "$5}'
-  - COVERAGE=$COVERAGE ./gradlew test jacocoTestCoverageVerification
-  - echo "Test coverage is "+$COVERAGE
+  - COVERAGE=$COVERAGE ./gradlew $SUT -p check
