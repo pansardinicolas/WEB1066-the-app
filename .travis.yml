@@ -10,9 +10,9 @@ jobs:
   include:
     - env: COVERAGE=0.05 SUT=./monolithic/ui
     - env: COVERAGE=0.05 SUT=./monolithic/service/cart
-    - env: COVERAGE=0.05 SUT=./monolithic/service/user
+    - env: COVERAGE=0 SUT=./monolithic/service/user
     - env: COVERAGE=0.05 SUT=./monolithic/repository/order
-    - env: COVERAGE=0.05 SUT=./monolithic/repository/cart
+    - env: COVERAGE=0 SUT=./monolithic/repository/cart
     - env: COVERAGE=0.05 SUT=./monolithic/repository/product
     - env: COVERAGE=0.05 SUT=./monolithic/repository/user
 
