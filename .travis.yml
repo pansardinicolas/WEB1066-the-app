@@ -2,21 +2,33 @@ dist: trusty
 language: java
 jdk:
   - oraclejdk8
-env:
-  - COVERAGE=0.05
 before_install:
   - ./gradlew clean jar
 install:
   - gradle assemble
 jobs:
   include:
-    - env: SUT=./monolithic/ui
-    - env: SUT=./monolithic/service/cart
-    - env: SUT=./monolithic/service/user
-    - env: SUT=./monolithic/repository/order
-    - env: SUT=./monolithic/repository/cart
-    - env: SUT=./monolithic/repository/product
-    - env: SUT=./monolithic/repository/user
-    
+    - env:
+      COVERAGE=0.05
+      SUT=./monolithic/ui
+    - env:
+      COVERAGE=0.05
+      SUT=./monolithic/service/cart
+    - env:
+      COVERAGE=0.05
+      SUT=./monolithic/service/user
+    - env:
+      COVERAGE=0.05
+      SUT=./monolithic/repository/order
+    - env:
+      COVERAGE=0.05
+      SUT=./monolithic/repository/cart
+    - env:
+      COVERAGE=0.05
+      SUT=./monolithic/repository/product
+    - env:
+      COVERAGE=0.05
+      SUT=./monolithic/repository/user
+
 script:
   - COVERAGE=$COVERAGE ./gradlew $SUT -p check
