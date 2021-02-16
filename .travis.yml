@@ -1,8 +1,7 @@
-services:
-- docker
-
 dist: trusty
 language: java
+services:
+- docker
 jdk:
 - oraclejdk8
 before_install:
