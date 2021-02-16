@@ -1,3 +1,5 @@
+services:
+- docker
 dist: trusty
 language: java
 jdk:
@@ -7,10 +9,7 @@ before_install:
 install:
 - gradle assemble
 script:
-- "./gradlew test"
-after_script:
-- "./gradlew jacocoTestReport"
-- find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print $3" "$4" "$5}'
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 env:
   global:
     secure: eAb0ooDcLy+h3P2iekk420FPLQggE+gI/M+YjoTSElDilIXVgLML66qQWYqbVMjW6Qf3ab8gzuwGV/76+BtAzwxA10UzRq1/ZUUo++yiHMjstmgqo6Ym2ELOrf+ITcnEJZMP2E8/Y9F782nbH2jIBN75enxVxkDwHUnISGm5Th3CklSNtnsEwRWCVOOHAkZ+KicqX93JzD5EDAs4hok3ODHmcyZHsVfWfkbIJZJ6vZwA8wfEk6eVXR2hzV1Joq79BH/Urc3/H2X7vD9iWie3QHx4/Notesddai+MyGt3/4INaZrzuaxgLBEpdSHopa9AFhUr1cPtlaAr8L0scvsmZe74tG3Lp/77IUeoNsU97dCE72QyRDa/ErqvQA0BrpUB+SoIkhAzWPuyCsdxZO+yYjijXFKf7CxcK77t3kW0llKSrIOi8jBG8FfXU0ffMzDc107vSzw+Kq0+TC1gO9E1qyDkcRYTH64alRYhEykRBe6eGYpYV2vsTuHrsHJIWoHAqJh0q45IiQqHl3gtynhbyefcUtRWKyZrLLEpsXuJQAf3ItUK9aWeafkrEwxgzA3qPyKmRP3zsIwpgBHHLuBCgGt9P9N7uhGOfap0S8UgnaSaaqGJmtjnrZj+aC+B6GsB7KfyqXCoTE9qXXo1lWOkh9jZPhvfcP7X53AEnN+UNlI=
