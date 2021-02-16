@@ -1,7 +1,7 @@
 dist: trusty
 language: java
 jdk:
-  - oraclejdk9
+  - oraclejdk8
 before_install:
   - ./gradlew clean jar
 install:
@@ -17,4 +17,4 @@ jobs:
     - env: COVERAGE=0.05 SUT=./monolithic/repository/user
 
 script:
-  - COVERAGE=$COVERAGE ./gradlew $SUT -p check
+  - COVERAGE=$COVERAGE ./gradlew -p $SUT check
